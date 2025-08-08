@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geniva - Register</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e1d4bb, #f5f5f5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .register-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #6a4e3a;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #3c2c23;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .form-group input:focus {
+      border-color: #a8896d;
+      outline: none;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .register-btn {
+      width: 100%;
+      background-color: #6a4e3a;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .register-btn:hover {
+      background-color: #543b2b;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .link a {
+      color: #6a4e3a;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Geniva Registration</h2>
+    <form id="registerForm" action="/register" method="post">
+
+      <input type="hidden" name="id" value="" />
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Choose a username" required />
+        <div id="usernameError" class="error-message"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required />
+        <div id="nameError" class="error-message"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" required />
+        <div id="passwordError" class="error-message"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required />
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Contact Number</label>
+        <input type="text" id="contact" name="contact" placeholder="e.g. 9876543210" required />
+        <div id="contactError" class="error-message"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="e.g. user@example.com" required />
+        <div id="emailError" class="error-message"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+          <option value="" disabled selected>Select your gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <button type="submit" class="register-btn">Register</button>
+
+      <div class="link">
+        <p>Already have an account? <a href="/login">Login</a></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function (event) {
+      const username = document.getElementById('username').value.trim();
+      const name = document.getElementById('name').value.trim();
+      const password = document.getElementById('password').value;
+      const contact = document.getElementById('contact').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      let isValid = true;
+
+      // Simulated existing usernames (in real app, this should be checked via AJAX/server)
+     
+
+      // Clear previous errors
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('passwordError').textContent = '';
+      document.getElementById('contactError').textContent = '';
+      document.getElementById('emailError').textContent = '';
+
+  
+
+      // Validate name
+      const nameRegex = /^[A-Za-z ]{2,}$/;
+      if (!nameRegex.test(name)) {
+        document.getElementById('nameError').textContent =
+          'Name must be at least 2 characters and contain only letters.';
+        isValid = false;
+      }
+
+      // Validate password
+      const capitalLetter = /^[A-Z]/;
+      const digit = /[0-9]/;
+      if (!capitalLetter.test(password)) {
+        document.getElementById('passwordError').textContent =
+          'Password must start with a capital letter.';
+        isValid = false;
+      } else if (password.length !== 10) {
+        document.getElementById('passwordError').textContent =
+          'Password must be exactly 10 characters long.';
+        isValid = false;
+      } else if (!digit.test(password)) {
+        document.getElementById('passwordError').textContent =
+          'Password must contain at least one number.';
+        isValid = false;
+      }
+
+      // Validate contact
+      const contactRegex = /^[0-9]{10}$/;
+      if (!contactRegex.test(contact)) {
+        document.getElementById('contactError').textContent =
+          'Contact must be exactly 10 digits.';
+        isValid = false;
+      }
+
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').textContent =
+          'Please enter a valid email address.';
+        isValid = false;
+      }
+
+      if (!isValid) {
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>

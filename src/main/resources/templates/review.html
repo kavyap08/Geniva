@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Reviews | Geniva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #fceeee;
+      color: #6c3b3b;
+    }
+
+    header {
+      text-align: center;
+      background-color: #f5c6c6;
+      padding: 20px;
+      border-bottom: 2px solid #d9a4a4;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .review-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff0f0;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .review-container h2 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #f0bebe;
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #d57c7c;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #b0413e;
+    }
+
+    .go-home {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .go-home a {
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      color: #6c3b3b;
+      border: 1px solid #f0bebe;
+      padding: 12px 24px;
+      border-radius: 12px;
+      background-color: #ffe5e5;
+      display: inline-block;
+      font-size: 1.1rem;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .go-home a:hover {
+      background-color: #f5c6c6;
+      transform: scale(1.05);
+      color: #a33c3c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #f5c6c6;
+      color: #5b2c2c;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Customer Reviews</h1>
+  </header>
+
+  <div class="review-container">
+    <h2>We’d Love Your Feedback!</h2>
+    <form method="POST">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+
+      <label for="rating">Rating:</label>
+      <select id="rating" name="rating" required>
+        <option value="" disabled selected>Select a rating</option>
+        <option value="5">★★★★★ - Excellent</option>
+        <option value="4">★★★★☆ - Good</option>
+        <option value="3">★★★☆☆ - Average</option>
+        <option value="2">★★☆☆☆ - Poor</option>
+        <option value="1">★☆☆☆☆ - Very Poor</option>
+      </select>
+
+      <label for="review">Your Review:</label>
+      <textarea id="review" name="review" placeholder="Tell us about your experience..."></textarea>
+
+      <button type="submit">Submit Review</button>
+    </form>
+
+    <div class="go-home">
+      <a href="/">← Go to Home Page</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Geniva Fine Jewelry | Thank you for your feedback.
+  </footer>
+
+</body>
+</html>

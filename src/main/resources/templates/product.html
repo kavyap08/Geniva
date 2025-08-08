@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geniva Jewelry - Products</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #fff0f5, #ffe4ec);
+      padding: 30px 20px;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #c71585;
+      font-size: 38px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px #ffc0cb;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .product-card {
+      background: #fff;
+      border: 1px solid #ffc0cb;
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 14px 30px rgba(255, 105, 180, 0.25);
+    }
+
+    .image-container {
+      background: linear-gradient(145deg, #ffe4ec, #fff0f5);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ffb6c1;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(255, 182, 193, 0.4);
+    }
+
+    .product-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #800080;
+      margin-bottom: 6px;
+    }
+
+    .product-price {
+      font-size: 15px;
+      color: #ff1493;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 25px 0;
+      text-align: center;
+      background-color: #ffdce6;
+      border-top: 2px solid #ffc0cb;
+    }
+
+    .back-button {
+      background: linear-gradient(to right, #ff69b4, #c71585);
+      color: white;
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(199, 21, 133, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: linear-gradient(to right, #c71585, #800050);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .product-card img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .product-name {
+        font-size: 14px;
+      }
+
+      .product-price {
+        font-size: 13px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Geniva Jewelry - Our Products</h1>
+
+  <div class="product-grid">
+	
+    <div class="product-card" th:each="product : ${products}">
+      <div class="image-container">
+        <img th:src="${product.image}" th:alt="${product.name}" />
+      </div>
+      <div class="product-name" th:text="${product.name}">Product Name</div>
+      <div class="product-price" th:text="'₹' + ${product.cost}">₹0</div>
+	  <form action="/submit" method="post">
+	    <input type="hidden" name="id" value="12345">	    
+	  </form>
+	  <form action="/add-to-cart" method="post">
+	    <input type="hidden" name="productId" th:value="${product.id}" />
+	    <button type="submit" class="geniva-link">Add to Cart</button>
+	  </form>
+
+    </div>
+  </div>
+
+  <footer>
+    <a class="back-button" th:href="@{/}">← Back to Home</a>
+  </footer>
+
+</body>
+</html>

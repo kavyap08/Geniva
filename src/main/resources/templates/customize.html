@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customize Your Jewelry | Geniva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #fceeee;
+      color: #6c3b3b;
+    }
+
+    header {
+      background-color: #f5c6c6;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #d9a4a4;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #fff0f0;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #f0bebe;
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #d57c7c;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #b0413e;
+    }
+
+    .go-home {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .go-home a {
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+      color: #6c3b3b;
+      border: 1px solid #f0bebe;
+      padding: 12px 24px;
+      border-radius: 12px;
+      background-color: #ffe5e5;
+      display: inline-block;
+      font-size: 1.1rem;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .go-home a:hover {
+      background-color: #f5c6c6;
+      transform: scale(1.05);
+      color: #a33c3c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #f5c6c6;
+      color: #5b2c2c;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Customize Your Jewelry</h1>
+  </header>
+
+  <div class="form-container">
+    <h2>Design Your Own Piece</h2>
+	<form action="/customize" method="POST">
+
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+
+      <label for="type">Jewelry Type:</label>
+      <select id="type" name="type" required>
+        <option value="" disabled selected>Select type</option>
+        <option value="Ring">Ring</option>
+        <option value="Bracelet">Bracelet</option>
+        <option value="Anklet">Anklet</option>
+        <option value="Earring">Earring</option>
+        <option value="Necklace">Necklace</option>
+      </select>
+
+      <label for="budget">Budget (₹):</label>
+      <input type="number" id="budget" name="budget" placeholder="e.g., 5000" min="100" required />
+
+      <label for="notes">Additional Notes / Design Ideas:</label>
+      <textarea id="notes" name="notes" placeholder="Describe your desired design..."></textarea>
+
+      <label for="image">Upload Your Design or Inspiration Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" />
+
+      <button type="submit">Submit Custom Request</button>
+    </form>
+
+    <div class="go-home">
+      <a href="/">← Go to Home Page</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Geniva Fine Jewelry | Custom creations made just for you.
+  </footer>
+
+</body>
+</html>

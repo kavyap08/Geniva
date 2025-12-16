@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geniva - Order Success</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* GENIVA THEME CSS */
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fceeee;
+            color: #6c3b3b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #f5c6c6;
+            padding: 15px 30px;
+            border-bottom: 2px solid #d9a4a4;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #6c3b3b;
+            font-weight: bold;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: #6c3b3b;
+            left: 0;
+            bottom: -2px;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #b0413e;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .order-success-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .order-success-container h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            background-color: #f8dcdc;
+            border: 1px solid #d9a4a4;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .btn-home {
+            background-color: #6c3b3b;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-home:hover {
+            background-color: #a35555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f8dcdc;
+            border-top: 1px solid #d9a4a4;
+        }
+
+        @media (max-width: 600px) {
+            .order-success-container {
+                padding: 20px;
+            }
+
+            .order-success-container h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/collections}">Collections</a>
+        <a th:href="@{/cart}">My Cart</a>
+        <a th:href="@{/logout}" th:if="${session.username}">Logout</a>
+        <a th:href="@{/login}" th:if="${session.username == null}">Login</a>
+    </nav>
+</header>
+
+<!-- Order Success Section -->
+<main>
+    <div class="order-success-container">
+        <h1>Thank You!</h1>
+        <div th:if="${message}" class="alert">
+            <p th:text="${message}">Your order has been placed successfully.</p>
+        </div>
+
+        <a th:href="@{/}" class="btn-home">Continue Shopping</a>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    &copy; 2025 Geniva Fine Jewelry. All Rights Reserved.
+</footer>
+
+</body>
+</html>

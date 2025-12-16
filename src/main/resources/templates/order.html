@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geniva - Place Order</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Geniva theme styles (same as cart) */
+        body { font-family: 'Open Sans', sans-serif; background: #fceeee; color:#6c3b3b; margin:0; }
+        header { background:#f5c6c6; padding:15px 30px; border-bottom:2px solid #d9a4a4; }
+        nav { display:flex; justify-content:center; gap:30px; }
+        nav a { text-decoration:none; color:#6c3b3b; font-weight:bold; position:relative; }
+        nav a:hover { color:#b0413e; }
+        .order-container { max-width:800px; margin:30px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+        table { width:100%; border-collapse:collapse; margin-bottom:20px;}
+        table th, table td { border:1px solid #f0bebe; padding:12px; text-align:center;}
+        table th { background:#f8dcdc; font-weight:bold; }
+        .btn { background:#6c3b3b; color:white; border:none; padding:6px 10px; border-radius:4px; cursor:pointer;}
+        .btn:hover { background:#a35555; }
+        .total { text-align:right; font-weight:bold; margin-bottom:20px; }
+        form label { display:block; margin:10px 0 5px; }
+        form input, form textarea { width:100%; padding:8px; border-radius:5px; border:1px solid #d9a4a4; margin-bottom:10px; }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/collections}">Collections</a>
+        <a th:href="@{/cart}">My Cart</a>
+        <a th:href="@{/logout}" th:if="${session.username}">Logout</a>
+        <a th:href="@{/login}" th:if="${session.username == null}">Login</a>
+    </nav>
+</header>
+
+<div class="order-container">
+    <h2 style="text-align:center; font-family:'Playfair Display', serif;">Place Your Order</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Cost</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${cartItems}">
+                <td th:text="${item.name}">Product</td>
+                <td>₹<span th:text="${item.cost}">0</span></td>
+                <td th:text="${item.quantity}">1</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="total">
+        Total: ₹<span th:text="${total}">0.00</span>
+    </div>
+
+    <!-- Order Form -->
+    <form th:action="@{/placeOrder}" method="post">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+
+        <label for="address">Address</label>
+        <textarea name="address" id="address" rows="3" required></textarea>
+
+        <label for="contact">Contact Number</label>
+        <input type="text" name="contact" id="contact" required>
+
+        <button type="submit" class="btn">Place Order</button>
+    </form>
+</div>
+</body>
+</html>

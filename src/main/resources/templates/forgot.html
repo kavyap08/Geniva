@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geniva - Forgot Password</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(to right, #fceeee, #fff0f0);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background-color: #f5c6c6;
+      text-align: center;
+      padding: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #6a4e3a;
+      border-bottom: 2px solid #d9a4a4;
+      margin-bottom: 30px;
+    }
+
+    .forgot-container {
+      background-color: #fff8f8;
+      padding: 35px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    .forgot-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-family: 'Playfair Display', serif;
+      color: #8b5e3c;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #6c3b3b;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e0aaaa;
+      border-radius: 10px;
+      font-size: 14px;
+      background-color: #fffdfd;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #b0413e;
+      outline: none;
+    }
+
+    .forgot-btn {
+      width: 100%;
+      background-color: #d57c7c;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .forgot-btn:hover {
+      background-color: #b0413e;
+      transform: scale(1.03);
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+      color: green;
+    }
+
+    .error {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+      color: red;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 15px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .link a {
+      color: #6c3b3b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+      color: #b0413e;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Forgot Password</header>
+
+  <div class="forgot-container">
+    <h2>Reset Your Password</h2>
+
+    <form action="/forgot" method="post">
+      <div class="form-group">
+        <label for="email">Registered Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your registered email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" required />
+      </div>
+
+      <button type="submit" class="forgot-btn">Reset Password</button>
+
+      <p th:if="${message}" class="message" th:text="${message}"></p>
+      <p th:if="${error}" class="error" th:text="${error}"></p>
+
+      <div class="link">
+        <p>Remembered your password? <a href="/login">Back to Login</a></p>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
